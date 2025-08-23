@@ -1,0 +1,525 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  background-color: #fffbf7;
+  border-bottom: 5px solid #ff9800;
+  height: 80px;
+  margin: 0px;
+  width: 100%;
+  padding: 0px;
+  box-sizing: border-box;
+  align-items: center;
+}
+.cuisine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #666666;
+  font-weight: 400;
+  margin: 0;
+  flex-grow: 1;
+}
+.shimmer-container {
+  display: flex;
+  font-family: "Quattrocento Sans", sans-serif;
+  font-optical-sizing: auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.shimmer-card {
+  padding-left: 16px;
+  height: 430px;
+  width: 270px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, #d6d4d4, #a09a9a);
+  margin-bottom: 20px;
+}
+.shimmer-image {
+  padding-top: 40px;
+  background: linear-gradient(180deg, #a09a9a, #d6d4d4);
+  border-radius: 20px;
+  margin: 15px 0px 5px 0px;
+  width: 255px;
+  height: 150px;
+}
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333333;
+  margin: 16px 16px 4px 16px;
+  justify-content: center;
+  display: flex;
+}
+
+.image1 {
+  width: 100%;
+  height: 220px; /* Consistent height for all images */
+  object-fit: cover; /* Ensures image fills container without distortion */
+  transition: transform 0.3s ease; /* Smooth zoom on hover */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.res-card:hover img {
+  transform: scale(1.05); /* Slightly zooms the image */
+}
+.res-card .name,
+.res-card .cuisine,
+.res-card .Cost,
+.res-card .DelTime {
+  padding: 0 16px;
+}
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Staatliches", sans-serif;
+  font-size: 30px;
+  color: #ff5722;
+}
+.sad_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.shimmer-img {
+  height: 300px;
+  width: 280px;
+  padding-top: 40px;
+}
+.shimmer-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 25px;
+  aspect-ratio: 5;
+  -webkit-mask: linear-gradient(90deg, #0000, #000 20% 80%, #0000);
+  mask: linear-gradient(90deg, #0000, #000 20% 80%, #0000);
+  background: radial-gradient(closest-side at 37.5% 50%, #000 94%, #0000) 0 /
+    calc(80% / 3) 100%;
+  animation: l48 0.75s infinite linear;
+}
+@keyframes l48 {
+  100% {
+    background-position: 36.36%;
+  }
+}
+.Login {
+  border: 0.7px solid #fff3e0;
+  font-family: "Staatliches", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 27px;
+  color: #131313;
+  background-color: #ff5722;
+  border-radius: 5%;
+  align-items: baseline;
+  padding-top: 7.4px;
+  padding-bottom: 7.4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 4px;
+  transition: ease-in-out;
+}
+.Login:hover {
+  transition: ease-in-out;
+  background-color: rgba(245, 245, 220, 0.772);
+  cursor: pointer;
+  color: #ff5722;
+  transform: scale(1.14);
+  border: 0.5px solid #131313;
+}
+.rating {
+  background-color: #28a745; /* Green color for the badge */
+  color: #ffffff;
+  width: 20px;
+  padding: 6px 10px;
+  border-radius: 20px; /* Pill shape */
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Space between star icon and number */
+  margin-left: 10px;
+}
+.Cost,
+.DelTime {
+  font-size: 0.9rem;
+  color: #555555;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+html {
+  margin: 0px;
+  padding: 0px;
+  background-color: #fffbf7;
+}
+h1 {
+  font-family: "Micro 5", sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  color: #212121;
+}
+.res-card:hover .name {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transition-duration: 1s;
+  padding-top: 0px;
+  background: -webkit-linear-gradient(#3b2d2d, #be5959);
+  background-clip: text;
+  color: transparent;
+  transform: scale(1.05);
+}
+.res-card:hover {
+  transform: translateY(-6px); /* Lifts the card on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+} /* HTML: <div class="loader"></div> */
+/*Start of Gemini Edit*/
+.res-card {
+  /* This is your main card container */
+  background-color: #ffffff;
+  border-radius: 12px; /* Smoothed corners */
+  overflow: hidden; /* Ensures image and content stay within borders */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft, subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 300px;
+  margin: 20px;
+  padding-bottom: 10px;
+}
+.restaurant-cntnr {
+  display: flex;
+  font-family: "Quattrocento Sans", sans-serif;
+  font-optical-sizing: auto;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.restaurant-cntnr :hover {
+  cursor: pointer;
+  position: relative;
+  opacity: 1;
+}
+.logo {
+  padding-left: 20px;
+  margin-right: 2px;
+  font-family: "Micro 5", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 55px;
+  transition: ease-in-out;
+  transition-duration: 1s;
+  align-self: left;
+}
+.logo:active {
+  color: #ff5722;
+}
+.search-div {
+  margin-right: 10px;
+  margin-top: 14px;
+  margin-bottom: 8px;
+  margin-left: 7px;
+  display: flex;
+  justify-content: center;
+}
+.search {
+  padding-left: 10px;
+  width: 200px;
+  border-radius: 10px;
+  height: 32px;
+  margin-right: 8px;
+  border: 2px inset #ff5722;
+  font-size: 16px;
+  font-family: "Oswald", sans-serif;
+  font-weight: bold;
+}
+.search:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: solid 0 30px 30px #6c655e;
+  padding-left: 8px;
+  cursor: text;
+  cursor: black;
+  color: #ff4006;
+}
+.search-btn {
+  align-items: flex-end;
+  margin-left: 3px;
+  background-color: #ff5722;
+  color: #fff3e0;
+  border: 2px solid #ff5722;
+  border-radius: 10px;
+  font-weight: bold;
+  height: 34px;
+  width: 80px;
+  transition: width 1s ease-in-out;
+}
+.search-btn:active {
+  scale: 0.9;
+  background-color: #ff5722;
+  color: #fff3e0;
+  border: 2px solid #ff5722;
+  width: 100px;
+  transform: scale(1.1);
+  transition: width 0.4s ease-in-out;
+  cursor: pointer;
+}
+.search-btn:hover {
+  border: 2px solid #ff5722;
+  background-color: #fffbf7;
+  color: #ff5722;
+  height: 32px;
+  transition: width 0.4s ease-in-out;
+  cursor: pointer;
+  width: 100px;
+}
+.filter {
+  padding-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.filter-btn {
+  padding: 8px;
+  background-color: #fff3e0;
+  color: #131313;
+  border: 2px solid #ff9800;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.filter-btn:hover {
+  padding: 8px;
+  background-color: #ff9800;
+  color: aliceblue;
+  border: 1px solid #ff9800;
+  font-weight: bold;
+}
+.filter-btn:active {
+  background-color: #fff3e0;
+  color: #ff9800;
+  border: 3px solid #ff9800;
+  scale: 1.05;
+}
+.logo:hover {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transition-duration: 1.5s;
+  padding-top: 0px;
+  background: -webkit-linear-gradient(#3b2d2d, #be5959);
+  background-clip: text;
+  color: transparent;
+  transform: scale(1.1);
+}
+.NavItems {
+  font-size: 25px;
+  margin-right: 10px;
+  margin-top: 0;
+  display: flex;
+}
+.NavItems > ul {
+  display: inline-flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  align-items: end;
+  font-family: "Staatliches", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.NavItems > ul > li {
+  transition: ease-in-out;
+  transition-duration: 300ms;
+  align-items: center;
+  align-self: center;
+  padding: 10px 10px 7px 10px;
+  margin-right: 8px;
+}
+.NavItems > ul > li:hover {
+  transition: ease-in-out;
+  background-color: rgba(245, 245, 220, 0.772);
+  cursor: pointer;
+  color: #ff5722;
+  transform: scale(1.1);
+}
+/* Restaurant PAge */
+.res-header {
+  display: flex;
+  justify-content: stretch;
+  justify-items: baseline;
+  font-family: "Staatliches", sans-serif;
+  color: #212121;
+}
+.RestaurantPage {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  max-width: 1000px;
+  padding: 20px;
+  font-family: "Staatliches", sans-serif;
+}
+
+/* Main Restaurant Card */
+.RestaurantInfo {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.RestaurantImage {
+  flex: 1;
+  min-width: 250px;
+}
+
+.RestaurantImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.RestaurantDetails {
+  flex: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.RestaurantDetails h2 {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 34px;
+}
+
+.RestaurantDetails p {
+  margin: 6px 0;
+  font-size: 16px;
+  color: #666;
+}
+.title {
+  display: flex;
+  align-items: center;
+}
+.avgRating {
+  display: inline-block;
+  background: #4caf50;
+  color: #fff;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+.resname-city {
+  display: flex;
+  flex-direction: column;
+}
+.info-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Menu Section */
+.MenuTitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.FilterBtns {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.FilterButton.Recommended:hover {
+  background: #ff9800;
+  color: #fff;
+  border-color: #ff9800;
+}
+.FilterButton.veg:hover {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+}
+.FilterButton.non-veg:hover {
+  background: #f44336;
+  color: #fff;
+  border-color: #f44336;
+}
+.FilterButton {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Menu Items like cards */
+.Menucontents ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Menucontents li {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.DishInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.DishInfo h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.DishInfo p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.AddBtn {
+  background: #ff5722;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.AddBtn:hover {
+  background: #e64a19;
+}
