@@ -2,6 +2,7 @@ import Restocard from "./RestaurantCard.jsx";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.jsx";
 import Empty from "./Empty";
+import { Link } from "react-router-dom";
 let DEFAULT_LAT = 17.5366218;
 let DEFAULT_LNG = 78.4844811;
 let x = 0;
@@ -118,7 +119,9 @@ const Body = () => {
       </div>
       <div className="restaurant-cntnr">
         {filteredResList.map((restaurant) => (
-          <Restocard key={restaurant.info.id} resData={restaurant} />
+          <Link to={"Restaurant/" + restaurant.info.id}>
+            <Restocard key={restaurant.info.id} resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>

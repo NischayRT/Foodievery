@@ -1,31 +1,27 @@
 import { React, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Shimmer2 from "./Shimmer2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
   faBowlFood,
-  faIndianRupeeSign,
-  faClock,
   faStar,
-  faLeaf,
-  faDrumstickBite,
-  faFilter,
 } from "@fortawesome/free-solid-svg-icons";
-
-// import { data } from "react-router-dom";
-// import { restaurantId } from "Body.jsx";
+const veg = new URL("../veg.png", import.meta.url).href;
+const nonveg = new URL("../non-veg.png", import.meta.url).href;
 import { CDN_URL } from "./../utils/Constant";
 
 let DEFAULT_LAT = 17.5366218;
 let DEFAULT_LNG = 78.4844811;
 
-let restaurantId = "667695";
 const RestaurantPage = () => {
   const [resInfo, setResInfo] = useState(null);
+  const { resId } = useParams();
+  console.log("resId", resId);
   useEffect(() => {
     const getUserLocation = () => {
       if (!navigator.geolocation) {
-        fetchMenu(DEFAULT_LAT, DEFAULT_LNG); // fallback
+        fetchMenu(DEFAULT_LAT, DEFAULT_LNG, resId); // fallback
         return;
       }
       navigator.geolocation.getCurrentPosition(
@@ -34,18 +30,22 @@ const RestaurantPage = () => {
           const userLng = position.coords.longitude;
           console.log(userLat, userLng);
           console.log("User Location:", userLat, userLng);
-          fetchMenu(userLat, userLng);
+          fetchMenu(userLat, userLng, resId);
         },
         () => {
-          fetchMenu(DEFAULT_LAT, DEFAULT_LNG);
+          fetchMenu(DEFAULT_LAT, DEFAULT_LNG, resId);
         }
       );
     };
     getUserLocation();
   }, []);
   // UPDATED: fetchData now takes lat, lng
-  const fetchMenu = async (lat = DEFAULT_LAT, lng = DEFAULT_LNG) => {
-    const apiUrl = `https://proxy.cors.sh/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${restaurantId}&catalog_qa=undefined&submitAction=ENTER`;
+  const fetchMenu = async (
+    lat = DEFAULT_LAT,
+    lng = DEFAULT_LNG,
+    restaurantId = resId
+  ) => {
+    const apiUrl = `https://proxy.cors.sh/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${restaurantId}`;
     const data = await fetch(apiUrl, {
       headers: {
         "x-cors-api-key": "temp_b3cf31787eccbc7cc29237bca242ee7d", // <-- put your CORS.SH API Key here
@@ -61,7 +61,10 @@ const RestaurantPage = () => {
   }
   const { name, cuisines, city, costForTwoMessage, avgRating } =
     resInfo?.cards[2]?.card?.card?.info ?? {};
-  console.log("resInfo", resInfo);
+  const { itemCards } =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+      ?.card ?? {};
+  console.log("itemCards", itemCards);
   return (
     <div className="RestaurantPage">
       {/* Restaurant Info Card */}
@@ -106,34 +109,38 @@ const RestaurantPage = () => {
       {/* Menu Section */}
       <h2 className="MenuTitle">Menu</h2>
       <div className="FilterBtns">
-        <button className="FilterButton Recommended">Recommended</button>
-        <button className="FilterButton veg">Veg Only</button>
-        <button className="FilterButton nonveg">Non-Veg Only</button>
+        <button
+          className="FilterButton veg"
+          onClick={() => {
+            const vegItems = itemCards.filter((item) => item.card.info.isVeg);
+            console.log(vegItems);
+            setResInfo(vegItems);
+          }}
+        >
+          <img src={veg} alt="veg" className="vegIcon" /> Veg Only
+        </button>
+        <button className="FilterButton nonveg">
+          <img src={nonveg} alt="non-veg" className="nonvegIcon" /> Non-Veg Only
+        </button>
       </div>
 
       <div className="Menucontents">
         <ul>
-          <li>
-            <div className="DishInfo">
-              <h3>Veg Hakka Noodles</h3>
-              <p>₹120</p>
-            </div>
-            <button className="AddBtn">+ Add</button>
-          </li>
-          <li>
-            <div className="DishInfo">
-              <h3>Chicken Fried Rice</h3>
-              <p>₹180</p>
-            </div>
-            <button className="AddBtn">+ Add</button>
-          </li>
-          <li>
-            <div className="DishInfo">
-              <h3>Manchow Soup</h3>
-              <p>₹90</p>
-            </div>
-            <button className="AddBtn">+ Add</button>
-          </li>
+          {itemCards?.map((item) => (
+            <li key={item.card.info.id} className="MenuItem">
+              <div className="ItemDetails">
+                <span className="itemName">{item.card.info.name}</span>
+                <span className="price">
+                  ₹
+                  {item.card.info.price / 100 ||
+                    item.card.info.defaultPrice / 100}
+                </span>
+              </div>
+              <div className="AddWrapper">
+                <button className="AddBtn">+ Add</button>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
