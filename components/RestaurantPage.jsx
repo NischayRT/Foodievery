@@ -64,7 +64,11 @@ const RestaurantPage = () => {
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card ?? {};
+  const { title } =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+      ?.card ?? {};
   console.log("itemCards", itemCards);
+  console.log("title", title);
   return (
     <div className="RestaurantPage">
       {/* Restaurant Info Card */}
@@ -125,6 +129,13 @@ const RestaurantPage = () => {
       </div>
 
       <div className="Menucontents">
+        <div className="MenuCategory">
+          {title?.map((item) => (
+            <h3 key={item.title} className="CategoryTitle">
+              {item.title} ({item.itemCards.length})
+            </h3>
+          ))}
+        </div>
         <ul>
           {itemCards?.map((item) => (
             <li key={item.card.info.id} className="MenuItem">
