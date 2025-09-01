@@ -61,10 +61,8 @@ const RestaurantPage = () => {
   }
   const { name, cuisines, city, costForTwoMessage, avgRating } =
     resInfo?.cards[2]?.card?.card?.info ?? {};
+  const { title } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR ?? {};
   const { itemCards } =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card ?? {};
-  const { title } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card ?? {};
   console.log("itemCards", itemCards);
@@ -129,30 +127,35 @@ const RestaurantPage = () => {
       </div>
 
       <div className="Menucontents">
-        <div className="MenuCategory">
-          {title?.map((item) => (
-            <h3 key={item.title} className="CategoryTitle">
-              {item.title} ({item.itemCards.length})
-            </h3>
-          ))}
-        </div>
-        <ul>
-          {itemCards?.map((item) => (
-            <li key={item.card.info.id} className="MenuItem">
-              <div className="ItemDetails">
-                <span className="itemName">{item.card.info.name}</span>
-                <span className="price">
-                  ₹
-                  {item.card.info.price / 100 ||
-                    item.card.info.defaultPrice / 100}
-                </span>
+        {resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map(
+          (category, index) => {
+            const catTitle = category?.card?.card?.title;
+            const catItems = category?.card?.card?.itemCards;
+
+            return catItems ? (
+              <div key={index} className="MenuCategory">
+                <h3 className="CategoryTitle">{catTitle}</h3>
+                <ul>
+                  {catItems.map((item) => (
+                    <li key={item.card.info.id} className="MenuItem">
+                      <div className="ItemDetails">
+                        <span className="itemName">{item.card.info.name}</span>
+                        <span className="price">
+                          ₹
+                          {item.card.info.price / 100 ||
+                            item.card.info.defaultPrice / 100}
+                        </span>
+                      </div>
+                      <div className="AddWrapper">
+                        <button className="AddBtn">+ Add</button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="AddWrapper">
-                <button className="AddBtn">+ Add</button>
-              </div>
-            </li>
-          ))}
-        </ul>
+            ) : null;
+          }
+        )}
       </div>
     </div>
   );
