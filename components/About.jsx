@@ -6,9 +6,9 @@ const img3 = new URL("../ice-cream.png", import.meta.url).href;
 const img4 = new URL("../fastfood.png", import.meta.url).href;
 const img5 = new URL("../Italian.png", import.meta.url).href;
 const img6 = new URL("../shawarma.png", import.meta.url).href;
-const img7 = new URL("../sweets.png", import.meta.url).href;
+const img7 = new URL("../Sweets.png", import.meta.url).href;
 const img8 = new URL("../pizza.png", import.meta.url).href;
-const img9 = new URL("../bakery.png", import.meta.url).href;
+const img9 = new URL("../Bakery.png", import.meta.url).href;
 
 const About = () => {
   const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img0];
