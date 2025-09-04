@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// const img0 = new URL("../Biryani.png", import.meta.url).href;
+const img0 = new URL("../Biryani.png", import.meta.url).href;
 const img1 = new URL("../south-indian.png", import.meta.url).href;
 const img2 = new URL("../northIndian2.png", import.meta.url).href;
 const img3 = new URL("../ice-cream.png", import.meta.url).href;
@@ -8,7 +8,7 @@ const img5 = new URL("../Italian.png", import.meta.url).href;
 const img6 = new URL("../shawarma.png", import.meta.url).href;
 const img7 = new URL("../Sweets.png", import.meta.url).href;
 const img8 = new URL("../pizza.png", import.meta.url).href;
-// const img9 = new URL("../bakery.png", import.meta.url).href;
+const img9 = new URL("../bakery.png", import.meta.url).href;
 
 const About = () => {
   const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img0];
