@@ -34,7 +34,8 @@ const RestaurantPage = () => {
         },
         () => {
           fetchMenu(DEFAULT_LAT, DEFAULT_LNG, resId);
-        }
+        },
+        []
       );
     };
     getUserLocation();
@@ -133,7 +134,7 @@ const RestaurantPage = () => {
             const catItems = category?.card?.card?.itemCards;
 
             return catItems ? (
-              <div key={index } className="MenuCategory">
+              <div key={index} className="MenuCategory">
                 <h3 className="CategoryTitle">{catTitle}</h3>
                 <ul>
                   {catItems.map((item) => (
