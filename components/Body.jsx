@@ -26,11 +26,13 @@ const Body = () => {
         },
         () => {
           fetchData(DEFAULT_LAT, DEFAULT_LNG);
-        }
+        },
+        []
       );
     };
     getUserLocation();
   }, []);
+  console.time("API Call");
   // UPDATED: fetchData now takes lat, lng
   const fetchData = async (lat = DEFAULT_LAT, lng = DEFAULT_LNG) => {
     const apiUrl = `https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
@@ -48,6 +50,7 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+  console.timeEnd("API Call");
   if (ResList.length === 0) {
     x = 1;
     return <Shimmer />;
