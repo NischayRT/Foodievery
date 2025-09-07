@@ -1,4 +1,5 @@
 .profile-container {
+  border-top: 2px solid #ff5722;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +37,7 @@
   font-family: "Staatliches", sans-serif;
   color: white;
   transition: 0.3s;
-  transform: translateY(20px);
+  transform: translateY(5px);
 }
 .Txt {
   font-family: "Staatliches", sans-serif;
@@ -52,7 +53,7 @@
 }
 
 .profile-btn:hover .profile-icon {
-  transform: translateY(60%);
+  transform: translateY(45%);
   width: 26px;
   height: 26px;
 }
